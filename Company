@@ -1,0 +1,185 @@
+package newpackage;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.NoAlertPresentException; 
+import org.openqa.selenium.Alert;
+import java.util.Iterator;		
+import java.util.Set;
+
+
+public class Company {
+
+		private static final String ChildWindow = null;
+
+		public static void main(String[] args) throws InterruptedException {
+		//Set the Path of Executable Browser Driver
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\chromedriver.exe");
+
+		//Login
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.centagate.com/centagate/index.xhtml");
+		driver.findElement(By.id("loginform:username")).sendKeys("centagateadmin");
+		
+		driver.findElement(By.id("loginform:passwordless_button")).click();
+		driver.findElement(By.id("loginform:password")).sendKeys("foo123");
+		driver.findElement(By.id("loginform:login_button")).click();
+		Thread.sleep(1000);
+		
+		
+		//QNA
+		//driver.findElement(By.id("qna")).click();
+			
+		//driver.findElement(By.id("loginform:questionTable:0:answer")).sendKeys("abc123");
+				
+				
+		//driver.findElement(By.id("loginform:qna_submit_button")).click();
+		//Thread.sleep(2000);
+		
+		System.out.println("Welcome to Centagate");
+		
+		driver.findElement(By.cssSelector("#menuCompanies > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		//Add Company
+		
+		driver.findElement(By.cssSelector("#ulCompanies > li:nth-child(2) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(1000);
+		
+		driver.findElement(By.id("name")).sendKeys("Company"+randomInt);
+		Thread.sleep(2000);
+		
+		Select phone1 = new Select(driver.findElement(By.id("companyCountryCode")));
+		phone1.selectByValue("AO|+244");
+		
+		Random randomGenerator1 = new Random();
+		int randomInt1 = randomGenerator1.nextInt(1000);
+		
+		driver.findElement(By.id("phoneNo")).sendKeys("123"+randomInt1);
+		Thread.sleep(2000);
+		
+		
+		
+		
+		//Go to subscription tab to add license date
+		
+		driver.findElement(By.cssSelector("#companytabs > li:nth-child(4) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("li.active:nth-child(4) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		//driver.findElement(By.cssSelector("#j_idt166 > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1) > img:nth-child(2)")).click();
+		driver.findElement(By.cssSelector("#j_idt205 > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1) > img:nth-child(2)")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector(".ui-state-highlight")).click();
+		Thread.sleep(2000);
+		
+		//driver.findElement(By.cssSelector("#j_idt166 > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(3) > img:nth-child(2)")).click();
+		driver.findElement(By.cssSelector("#j_idt205 > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(3) > img:nth-child(2)")).click();
+		
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector(".ui-datepicker-calendar > tbody:nth-child(2) > tr:nth-child(5) > td:nth-child(4) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		driver.findElement(By.cssSelector("#actionBtnDiv > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(18) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		//Go back to company details tab
+		
+		//driver.findElement(By.cssSelector("li.active:nth-child(1) > a:nth-child(1)")).click();
+		//Thread.sleep(2000);
+		
+		
+		//driver.findElement(By.cssSelector("#actionBtnDiv > input:nth-child(1)")).click();
+		//Thread.sleep(2000);
+		
+		//driver.findElement(By.cssSelector("div.ui-dialog:nth-child(17) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		//Thread.sleep(2000);
+		
+		//Search Company
+		
+		driver.findElement(By.id("txtSearch")).clear();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.id("txtSearch")).sendKeys("Company"+ randomInt);
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("#inputs > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > div:nth-child(1) > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		//Update Company
+		
+		driver.findElement(By.cssSelector(".displayTableHeader > td:nth-child(6) > div:nth-child(1) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		Select countryid = new Select(driver.findElement(By.id("companyCountryId")));
+		countryid.selectByValue("130");
+		
+		driver.findElement(By.id("state")).sendKeys("Bukit Jalil");
+		
+		driver.findElement(By.id("city")).sendKeys("Kuala Lumpur");
+		
+		driver.findElement(By.id("zip")).sendKeys("63100");
+		
+		driver.findElement(By.id("address")).sendKeys("Jalan Teknokrat 2");
+		
+		
+		driver.findElement(By.cssSelector("input.btn:nth-child(2)")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(19) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		//Delete
+		
+		//driver.findElement(By.cssSelector(".displayTableHeader > td:nth-child(6) > div:nth-child(1) > a:nth-child(1)")).click();
+		//Thread.sleep(2000);
+		
+		
+		//phone1.selectByValue(" | ");
+		
+		//driver.findElement(By.id("phoneNo")).clear();
+		//Thread.sleep(2000);
+		
+		//driver.findElement(By.id("txtSearch")).clear();
+		//Thread.sleep(2000);
+		
+		//driver.findElement(By.id("txtSearch")).sendKeys("Company"+ randomInt);
+		//Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector(".displayTableHeader > td:nth-child(6) > div:nth-child(1) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("#deleteBtn")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(87) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		driver.quit();
+		}
+
+}
