@@ -1,1 +1,156 @@
-https://teams.microsoft.com/l/meetup-join/19%3ameeting_NjAxNGFiOTYtNTFmZS00Y2U1LTliNmYtNzlmMWY5MTRmMDVi%40thread.v2/0?context=%7b%22Tid%22%3a%2278e58a1d-55f3-4c34-afb9-8f4a0773b204%22%2c%22Oid%22%3a%220898763a-fa98-4693-868c-5c7bb3b9a8f5%22%7d
+package newpackage;
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.NoAlertPresentException; 
+import org.openqa.selenium.Alert;
+//import java.util.Iterator;		
+//import java.util.Set;
+import org.openqa.selenium.support.ui.Select.findOptionsByValue;
+import org.openqa.selenium.support.ui.Select.selectByValue;
+
+
+
+public class AddRole {
+
+		private static final String ChildWindow = null;
+
+		@SuppressWarnings("deprecation")
+		public static void main(String[] args) throws InterruptedException {
+		//Set the Path of Executable Browser Driver
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\chromedriver.exe");
+
+		//Login
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.centagate.com/centagate/index.xhtml");
+		driver.findElement(By.id("loginform:username")).sendKeys("centagateadmin");
+		
+		driver.findElement(By.id("loginform:passwordless_button")).click();
+		driver.findElement(By.id("loginform:password")).sendKeys("foo123");
+		driver.findElement(By.id("loginform:login_button")).click();
+		Thread.sleep(1000);
+		
+		//QNA
+		//driver.findElement(By.id("qna")).click();	
+		//driver.findElement(By.id("loginform:questionTable:0:answer")).sendKeys("abc123");
+		//driver.findElement(By.id("loginform:qna_submit_button")).click();
+		//Thread.sleep(1000);
+		
+		
+		//Add Role
+		
+	
+		
+		
+		driver.findElement(By.cssSelector("#menuGroup > a:nth-child(1)")).click();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.cssSelector("#liAddRole > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+
+		//SelectRoleTemplate
+		
+		
+		
+		Select roleTemplate = new Select(driver.findElement(By.name("inputform:roles")));
+		roleTemplate.selectByVisibleText("Centagate Admin");
+		Thread.sleep(2000);
+		
+	
+		
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(1000);
+		
+		driver.findElement(By.id("inputform:txtRoleName")).sendKeys("Role001"+randomInt);
+		Thread.sleep(1000);
+		
+		driver.findElement(By.id("txtDescription")).sendKeys("Role Description 001");
+		Thread.sleep(1000);
+		
+		driver.findElement(By.cssSelector("#actionBtnDiv > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+	
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(122) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		//Role List
+		
+		
+		driver.findElement(By.cssSelector("#liRoleList > a:nth-child(1)")).click();
+		Thread.sleep(1000);
+		
+		
+		//Search Role - text field
+		
+		//new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable
+		//(By.cssSelector("#txtSearch"))).sendKeys("Role001"+randomInt);
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtSearch"))).sendKeys("Role001"+ randomInt);
+		
+		
+		driver.findElement(By.cssSelector("#searchTextDivNewShort > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		//Update Role
+		
+		driver.findElement(By.cssSelector(".displayTableRow > td:nth-child(3) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.id("txtDescription")).sendKeys("Update Role");
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.cssSelector("input.btn:nth-child(2)")).click();
+		Thread.sleep(2000);
+	
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(123) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		//Delete Role
+		//new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable
+		//(By.cssSelector("#txtSearch"))).sendKeys("Role001"+randomInt);
+		
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		//wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtSearch"))).sendKeys("Role001"+ randomInt);
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait1.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtSearch"))).sendKeys("Role001"+ randomInt);
+		
+				
+		driver.findElement(By.cssSelector("#searchTextDivNewShort > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+
+		driver.findElement(By.cssSelector(".displayTableRow > td:nth-child(3) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.cssSelector("#actionBtnDiv > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(124) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		
+		driver.quit();
+		}
+
+}
