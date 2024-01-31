@@ -1,0 +1,154 @@
+package newpackage;
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.NoAlertPresentException; 
+import org.openqa.selenium.Alert;
+//import java.util.Iterator;		
+//import java.util.Set;
+
+
+public class AddGroup {
+
+		private static final String ChildWindow = null;
+
+		@SuppressWarnings("deprecation")
+		public static void main(String[] args) throws InterruptedException {
+		//Set the Path of Executable Browser Driver
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\chromedriver.exe");
+
+		//Login
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demo.centagate.com/centagate/index.xhtml");
+		driver.findElement(By.id("loginform:username")).sendKeys("centagateadmin");
+		
+		driver.findElement(By.id("loginform:passwordless_button")).click();
+		driver.findElement(By.id("loginform:password")).sendKeys("foo123");
+		driver.findElement(By.id("loginform:login_button")).click();
+		Thread.sleep(1000);
+		
+		//QNA
+		//driver.findElement(By.id("qna")).click();	
+		//driver.findElement(By.id("loginform:questionTable:0:answer")).sendKeys("abc123");
+		//driver.findElement(By.id("loginform:qna_submit_button")).click();
+		//Thread.sleep(1000);
+		
+		
+		//Add Group
+		
+	
+		driver.findElement(By.cssSelector("#menuGroup > a:nth-child(1)")).click();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.cssSelector("#ulGroup > li:nth-child(2) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(1000);
+		driver.findElement(By.id("groupName")).sendKeys("Group"+ randomInt);
+		
+		
+		//driver.findElement(By.id("groupName")).sendKeys("Group001");
+		//Thread.sleep(1000);
+		
+		driver.findElement(By.id("kba")).click();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.cssSelector("#actionBtn > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+	
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(22) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		//Group List
+		
+		
+		//driver.findElement(By.cssSelector("#menuGroup > a:nth-child(1)")).click();
+		//Thread.sleep(1000);
+		
+		//driver.findElement(By.cssSelector("#ulGroup > li:nth-child(1) > a:nth-child(1)")).click();
+		//Thread.sleep(2000);
+		
+		
+		//Search User - text field
+		
+		//new WebDriverWait(driver,10)until(ExpectedConditions.elementToBeClickable
+		//(By.cssSelector("#txtSearch"))).sendKeys("Group"+ randomInt);
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtSearch"))).sendKeys("Group"+ randomInt);
+		
+		driver.findElement(By.cssSelector("#searchTextDivNewShort > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
+		//Update Group
+		
+		driver.findElement(By.cssSelector("#check")).click();
+		Thread.sleep(2000);
+		
+		
+		//to perform Scroll on application using Selenium
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)", "");
+		
+		
+		//Locating element by link text and store in variable "Element"        		
+        WebElement Element = driver.findElement(By.cssSelector("#dormant"));
+
+        // Scrolling down the page till the element is found		
+        js.executeScript("arguments[0].scrollIntoView();", Element);
+        
+        
+		
+		Select objSelect1 = new Select(driver.findElement(By.cssSelector("#dormant")));
+		objSelect1.selectByVisibleText("No dormant period");
+		Thread.sleep(1000);
+		
+		driver.findElement(By.cssSelector("input.btn:nth-child(2)")).click();
+		Thread.sleep(1000);
+	
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(23) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(1000);
+
+	
+		
+		//Delete Group
+		
+		driver.findElement(By.cssSelector("#txtSearch")).clear();
+		Thread.sleep(2000);
+		
+		//new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable
+		//(By.cssSelector("#txtSearch"))).sendKeys("Group"+ randomInt);
+				
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait1.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtSearch"))).sendKeys("Group"+ randomInt);
+			
+		
+		driver.findElement(By.cssSelector("#check")).click();
+		Thread.sleep(2000);
+		
+		
+		driver.findElement(By.cssSelector("#actionBtn > input:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.cssSelector("div.ui-dialog:nth-child(32) > div:nth-child(3) > div:nth-child(1) > button:nth-child(1) > span:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		driver.quit();
+		}
+
+}
